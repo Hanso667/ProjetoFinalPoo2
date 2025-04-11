@@ -6,6 +6,7 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 import view.clientes.frClientes;
 import view.estoque.frEstoque;
 import view.usuarios.frUsuarios;
@@ -17,15 +18,23 @@ import view.venda.frVendas;
  */
 public class frMenu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frMenu
-     */
+    public String tipo = "funcionario";
+    
     public frMenu() {
         initComponents();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenWidth = screenSize.width+17;
         this.setSize(screenWidth, 130);
         this.setLocation(-10,0);
+    }
+    
+    public frMenu(String tipo) {
+        initComponents();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = screenSize.width+17;
+        this.setSize(screenWidth, 130);
+        this.setLocation(-10,0);
+        this.tipo = tipo;
     }
 
     /**
@@ -39,10 +48,10 @@ public class frMenu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnEstoque = new javax.swing.JButton();
+        btnVendas = new javax.swing.JButton();
+        btnUsuarios = new javax.swing.JButton();
+        btnClientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,31 +60,31 @@ public class frMenu extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton2.setText("Estoque");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEstoque.setText("Estoque");
+        btnEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                btnEstoqueMouseClicked(evt);
             }
         });
 
-        jButton3.setText("Vendas");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnVendas.setText("Vendas");
+        btnVendas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                btnVendasMouseClicked(evt);
             }
         });
 
-        jButton4.setText("Usuarios");
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnUsuarios.setText("Usuarios");
+        btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+                btnUsuariosMouseClicked(evt);
             }
         });
 
-        jButton5.setText("Clientes");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnClientes.setText("Clientes");
+        btnClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
+                btnClientesMouseClicked(evt);
             }
         });
 
@@ -85,13 +94,13 @@ public class frMenu extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                .addComponent(btnVendas, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                .addComponent(btnEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                .addComponent(btnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addGap(12, 12, 12))
         );
         jPanel2Layout.setVerticalGroup(
@@ -100,10 +109,10 @@ public class frMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -138,21 +147,25 @@ public class frMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        new frVendas(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_jButton3MouseClicked
+    private void btnVendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendasMouseClicked
+        new frVendas(this, rootPaneCheckingEnabled,tipo).setVisible(true);
+    }//GEN-LAST:event_btnVendasMouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void btnEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstoqueMouseClicked
         new frEstoque(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_btnEstoqueMouseClicked
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+    private void btnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseClicked
         new frClientes(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_jButton5MouseClicked
+    }//GEN-LAST:event_btnClientesMouseClicked
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        new frUsuarios(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_jButton4MouseClicked
+    private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
+        if(tipo.equals("admin")){
+            new frUsuarios(this, rootPaneCheckingEnabled).setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "permissão de admin necessaria para acessar essa pagina");
+        }
+    }//GEN-LAST:event_btnUsuariosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -190,10 +203,10 @@ public class frMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnEstoque;
+    private javax.swing.JButton btnUsuarios;
+    private javax.swing.JButton btnVendas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

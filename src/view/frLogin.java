@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.UsuarioController;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -233,7 +234,16 @@ public class frLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-
+        UsuarioController usu = new UsuarioController();
+        String email = txtEmail.getText();
+        String senha = txtSenha.getText();
+        if(usu.autenticar(email, senha)){
+            this.dispose();
+            String tipo = usu.GetTipo(email, senha);
+            new frMenu(tipo).setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Email ou Senha invalidos");
+        }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     /**

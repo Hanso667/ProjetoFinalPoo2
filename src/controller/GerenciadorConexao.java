@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class GerenciadorConexao {
   //static - terá o mesmo valor em todas as instâncias da classe
   //final - o valor da variável não mudará
-  private static final String URL = "jdbc:mysql://127.0.0.1:3306/";
+  private static final String URL = "jdbc:mysql://127.0.0.1:3306/locadora";
   private static final String USER = "root";
   private static final String PASSWORD = "";
 
